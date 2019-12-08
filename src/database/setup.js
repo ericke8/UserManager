@@ -1,11 +1,11 @@
 const log4js = require("log4js");
 const Sequelize = require("sequelize");
 
-const { Thing, ThingProperties } = require("./models");
+const { User, UserProperties } = require("./models");
 
 const name = process.env.DB_NAME || "postgres";
 const username = process.env.DB_USER || "postgres";
-const password = process.env.DB_PASSWORD || "password";
+const password = process.env.DB_PASSWORD || "postgres";
 const host = process.env.DB_HOST || "localhost";
 const port = process.env.DB_PORT || 5432;
 
@@ -30,9 +30,9 @@ const authenticateDB = () => {
 };
 
 const initModels = () => {
-  Thing.init(
-    ThingProperties,
-    getModelProperties("thing"),
+  User.init(
+    UserProperties,
+    getModelProperties("User"),
   );
 };
 
@@ -47,7 +47,7 @@ const setupDB = () => {
   authenticateDB();
   initModels();
 
-  Thing.sync({ force: true });
+  User.sync({ force: true });
 };
 
 module.exports = {

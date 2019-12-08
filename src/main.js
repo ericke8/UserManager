@@ -6,7 +6,7 @@ const log4js = require("log4js");
 
 const { ApolloServer } = require("apollo-server-express");
 
-const { postThing, getThing } = require("./handlers");
+const { createUser, getUser } = require("./handlers");
 const { resolvers, typeDefs } = require("./graphql");
 const { configureLogging } = require("./config/logging");
 const { setupDB } = require("./database");
@@ -24,9 +24,9 @@ const apolloServer = new ApolloServer({ resolvers, typeDefs });
 
 app.use(express.json());
 
-app.post("/api/v1/post", postThing);
+app.post("/api/v1/post", createUser);
 
-app.get("/api/v1/get", getThing);
+app.get("/api/v1/get", getUser);
 
 apolloServer.applyMiddleware({ app, path: "/graphql" });
 

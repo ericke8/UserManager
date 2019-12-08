@@ -1,6 +1,6 @@
-const {Thing, ThingProperties} = require("./Thing");
+const {User, UserProperties} = require("./User");
 
 module.exports = {
-  Thing,
-  ThingProperties
+  User,
+  UserProperties
 };
