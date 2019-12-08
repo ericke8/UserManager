@@ -1,7 +1,7 @@
-const { getThing } = require("./getThing");
-const { postThing } = require("./postThing");
+const { getUser } = require("./getUser");
+const { createUser } = require("./createUser");
 
 module.exports = {
-  getThing,
-  postThing
+  getUser,
+  createUser
 };

@@ -1,9 +1,9 @@
 const { setupDB } = require("./setup");
 
-const { Thing, ThingProperties } = require("./models");
+const { User, UserProperties } = require("./models");
 
 module.exports = {
   setupDB,
-  Thing,
-  ThingProperties,
+  User,
+  UserProperties,
 };

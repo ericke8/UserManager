@@ -1,9 +1,9 @@
 const { Op } = require("sequelize");
 
-const { Thing } = require("../database");
+const { User } = require("../database");
 
-const getThing = async (_, { id }) => {
-  return await Thing.findOne({
+const getUser = async (_, { id }) => {
+  return await User.findOne({
     where: {
       id
     },
@@ -11,8 +11,8 @@ const getThing = async (_, { id }) => {
   });
 };
 
-const getFirst10Things = async () => {
-  return await Thing.findAll({
+const getFirst10Users = async () => {
+  return await User.findAll({
     where: {
       id: {
         [Op.between]: [1, 10]
@@ -23,8 +23,8 @@ const getFirst10Things = async () => {
 
 const resolvers = {
   Query: {
-    getThing,
-    getFirst10Things,
+    getUser,
+    getFirst10Users,
   }
 };
 
