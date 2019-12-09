@@ -1,7 +1,10 @@
 const log4js = require("log4js");
 const Sequelize = require("sequelize");
 
-const { User, UserProperties } = require("./models");
+const {
+  User,
+  UserProperties,
+} = require("./models");
 
 const name = process.env.DB_NAME || "postgres";
 const username = process.env.DB_USER || "postgres";
@@ -32,7 +35,7 @@ const authenticateDB = () => {
 const initModels = () => {
   User.init(
     UserProperties,
-    getModelProperties("User"),
+    getModelProperties("user"),
   );
 };
 
@@ -43,9 +46,14 @@ const getModelProperties = (modelName, options = {}) => ({
   ...options,
 });
 
+const defineAssociations = () => {
+
+};
+
 const setupDB = () => {
   authenticateDB();
   initModels();
+  defineAssociations();
 
   User.sync({ force: true });
 };
