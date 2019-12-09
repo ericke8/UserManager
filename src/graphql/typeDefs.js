@@ -2,9 +2,10 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
 type Query {
-  getUser(id: ID!): User!
+  getUserById(id: ID!): User
+  getUserByEmail(email: String!): User
+  getAllUsers: [User!]
   getUsersByRole(role: RoleCategory): [User!]
-  getFirst10Users: [User!]
 }
 
 type User {
@@ -18,7 +19,9 @@ type User {
 }
 
 enum RoleCategory{
+  Owner
   Admin
+  Moderator
   Common
 }
 `;

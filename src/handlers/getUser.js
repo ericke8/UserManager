@@ -5,17 +5,22 @@ const { User } = require("../database");
 
 
 const getUser = async (req, res) => {
+  let selectOptions = {};
+  if(req.body.email){
+    selectOptions.email = req.body.email;
+  } else{
+    selectOptions.id = req.body.id;
+  }
+  
   try {
     const foundUser = await User.findOne({
-      where: {
-        id: req.body.id
-      },
+      where: selectOptions,
       raw: true
     });
     res.status(200).json(foundUser);
   } catch(error){
     logger.error("Unable to find User");
-    res.sendStatus(500);
+    res.status(500).json(error);
   }
 };
 

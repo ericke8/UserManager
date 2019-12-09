@@ -8,6 +8,7 @@ const createUser = async (req, res) => {
     id,
     firstName,
     lastName,
+    email,
     role,
     description
   } = req.body;
@@ -17,6 +18,7 @@ const createUser = async (req, res) => {
       id,
       firstName,
       lastName,
+      email,
       role,
       description,
     });
@@ -24,7 +26,7 @@ const createUser = async (req, res) => {
     res.sendStatus(201);
   } catch (error) {
     logger.error("Unable to make User");
-    res.sendStatus(500);
+    res.status(500).json(error);
   }
 };
 

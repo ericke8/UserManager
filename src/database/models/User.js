@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
+const uuidv4 = require("uuid/v4");
 
 const { UserRoles } = require("../../constants.js");
 
@@ -6,9 +7,10 @@ class User extends Sequelize.Model { }
 
 const UserProperties = {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     primaryKey: true,
-    autoIncrement: true,
+    defaultValue: () => uuidv4(),
+    allowNull: false,
   },
   firstName: {
     type: DataTypes.STRING,
@@ -17,6 +19,14 @@ const UserProperties = {
   lastName: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  email:{
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isEmail: true,
+    },
+    unique: true,
   },
   role: {
     type: DataTypes.ENUM(

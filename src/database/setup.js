@@ -47,15 +47,28 @@ const getModelProperties = (modelName, options = {}) => ({
 });
 
 const defineAssociations = () => {
-
+  return;
 };
 
-const setupDB = () => {
+const setupDB = async () => {
   authenticateDB();
   initModels();
   defineAssociations();
 
-  User.sync({ force: true });
+  await User.sync({ force: true });
+
+  try {
+    await User.create({
+      firstName: "Owner",
+      lastName: "Owner",
+      email: "owner@owner.com",
+      role: "Owner",
+      description: "Owner of the organization",
+    });
+    logger.info("Init db with owner");
+  } catch (error) {
+    logger.error("Could not init db with owner");
+  }
 };
 
 module.exports = {
