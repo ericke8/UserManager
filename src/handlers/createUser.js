@@ -6,15 +6,21 @@ const logger = log4js.getLogger();
 const createUser = async (req, res) => {
   const {
     id,
+    firstName,
+    lastName,
+    role,
     description
   } = req.body;
 
   try {
     await User.create({
       id,
+      firstName,
+      lastName,
+      role,
       description,
     });
-    logger.info(`User created with description ${description}`);
+    logger.info(`${role} User named ${firstName} ${lastName} created with description ${description}`);
     res.sendStatus(201);
   } catch (error) {
     logger.error("Unable to make User");
