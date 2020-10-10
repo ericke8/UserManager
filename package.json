@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "dependencies": {
-    "apollo-server-express": "^2.9.4",
+    "apollo-server-express": "^2.14.2",
     "express": "^4.17.1",
     "graphql": "^14.5.7",
     "log4js": "^5.1.0",
